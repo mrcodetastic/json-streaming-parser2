@@ -1,7 +1,7 @@
 # JSON Streaming Parser 2
-Arduino library for parsing potentially huge json streams on devices with scarce memory. 
+Arduino library for parsing potentially huge json streams on devices with scarce memory. Parses a HTTP stream character by character.. but requires you to write a customer FSM (finite state machine) for each particular JSON document.
 
-## Don't use this library anymore. ArduinoJson is far more functional now, and supports streaming as well.
+I suggest using ArduinoJson where possible.
 
 This library is a fork of squix78's json-streaming-parser, which itself is a port of Salsify's PHP based json streaming parser (https://github.com/salsify/jsonstreamingparser).
 
