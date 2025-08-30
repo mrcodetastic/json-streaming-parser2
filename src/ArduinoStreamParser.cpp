@@ -1,13 +1,13 @@
 #include "ArduinoStreamParser.h"
 
-size_t ArudinoStreamParser::write(uint8_t data) 
+size_t ArduinoStreamParser::write(uint8_t data) 
 {
 	parse(data);
 
 	return 1;
 }
 
-size_t ArudinoStreamParser::write(const uint8_t *buffer, size_t size)
+size_t ArduinoStreamParser::write(const uint8_t *buffer, size_t size)
 {
 	for (unsigned int i = 0; i < size; i++) {
 		parse(buffer[i]);
@@ -17,22 +17,22 @@ size_t ArudinoStreamParser::write(const uint8_t *buffer, size_t size)
 	return size;
 }
 
-int ArudinoStreamParser::available() {
+int ArduinoStreamParser::available() {
 	
     return 1;
 }
 
-int ArudinoStreamParser::read() {
+int ArduinoStreamParser::read() {
 	
     return 0;
 }
 
-int ArudinoStreamParser::peek() {
+int ArduinoStreamParser::peek() {
 	
     return 0;
 }
 
-void ArudinoStreamParser::flush() {
+void ArduinoStreamParser::flush() {
 	
   
 }

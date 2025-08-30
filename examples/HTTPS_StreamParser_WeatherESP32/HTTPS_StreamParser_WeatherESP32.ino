@@ -58,7 +58,7 @@ void setup()
     printHeapFreeToSerial(); 
 
     // Open Weather Map JSON Streaming Parser
-    ArudinoStreamParser parser;                   // <---------- Declare stream parser
+    ArduinoStreamParser parser;                   // <---------- Declare stream parser
     WeatherForecastHandler custom_handler;        // <---------- Declare stream handler
     
     parser.setHandler(&custom_handler); // <--------- Link to customer listener (parser to be honest)

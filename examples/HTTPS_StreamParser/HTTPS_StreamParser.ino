@@ -84,7 +84,7 @@ void setup()
   #endif
 
     // 1. Create Parser and JSON Stream Handler
-    ArudinoStreamParser parser;
+    ArduinoStreamParser parser;
     ExampleHandler custom_handler;
     
     // 2. Attach JSON Stream Handler

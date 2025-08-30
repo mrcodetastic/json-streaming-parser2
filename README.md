@@ -1,4 +1,7 @@
 # JSON Streaming Parser 2
+
+⚡ **NEW**: Version 2.1.0+ includes major security and stability improvements! See [IMPROVEMENTS.md](IMPROVEMENTS.md) for details.
+
 Arduino library for parsing potentially huge json streams on devices with scarce memory. Parses a HTTP stream character by character... but requires you to write a customer FSM (finite state machine) for each particular JSON document.
 
 I suggest using ArduinoJson where possible.
@@ -15,7 +18,7 @@ Finally, a couple of useful real life examples have been provided to get you sta
 ## How to install
 
 Until the library becomes available in the Arduino IDE library manager you'll have to do a bit more work by hand.
-1) Download this library: https://github.com/mrfaptastic/json-streaming-parser2/archive/master.zip
+1) Download this library: https://github.com/mrcodetastic/json-streaming-parser2/archive/master.zip
 2) Rename master.zip to json-streaming-parser2.zip
 3) Open the zip file in the Arduino IDE from menu Sketch > Include Library > Add ZIP Library...
 

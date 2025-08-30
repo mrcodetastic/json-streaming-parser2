@@ -4,13 +4,13 @@
   "description": "A character-by-character JSON parser to parse large JSON objects from HTTP or HTTPS on embedded devices. Requires a custom finite state machine (handler) for each JSON document, so use  ArduinoJSON where possible. Library includes useful example sketches.",
   "repository": {
     "type": "git",
-    "url": "https://github.com/mrfaptastic/json-streaming-parser2.git"
+    "url": "https://github.com/mrcodetastic/json-streaming-parser2.git"
   },
   "authors": {
     "name": "Faptastic",
-    "url": "https://github.com/mrfaptastic/"
+    "url": "https://github.com/mrcodetastic/"
   },
-  "version": "2.1.0",
+  "version": "2.1.1",
   "frameworks": "arduino",
   "platforms": "*",
   "examples": [

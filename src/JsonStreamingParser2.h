@@ -1,32 +1,5 @@
-/**The MIT License (MIT)
-
-Copyright (c) 2015 by Daniel Eichhorn
-
-Contributors:
-    Stefano Chizzolini
-
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
-
-The above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-SOFTWARE.
-
-See more at http://blog.squix.ch and https://github.com/squix78/json-streaming-parser
-*/
-
-#pragma once
+#ifndef JSON_STREAMING_PARSER2_H
+#define JSON_STREAMING_PARSER2_H
 
 #include <Arduino.h>
 #include "JsonHandler.h"
@@ -56,11 +29,19 @@ See more at http://blog.squix.ch and https://github.com/squix78/json-streaming-p
 #define JSON_PARSER_BUFFER_MAX_LENGTH  256
 #endif
 
+#ifndef JSON_PARSER_STACK_MAX_DEPTH
+#define JSON_PARSER_STACK_MAX_DEPTH    20
+#endif
+
+#ifndef JSON_PARSER_PATH_MAX_DEPTH
+#define JSON_PARSER_PATH_MAX_DEPTH     20
+#endif
+
 class JsonStreamingParser {
   private:
 
     int state;
-    int stack[20];
+    int stack[JSON_PARSER_STACK_MAX_DEPTH];
     int stackPos = 0;
     
     ElementValue elementValue;
@@ -83,6 +64,10 @@ class JsonStreamingParser {
     int characterCounter = 0;
 
     int unicodeHighSurrogate = 0;
+
+    // Error handling
+    bool hasError = false;
+    const char* errorMessage = nullptr;
 
     void increaseBufferPointer();
 
@@ -139,4 +124,17 @@ class JsonStreamingParser {
     void parse(char c);
     void setHandler(JsonHandler* handler);
     void reset();
+    
+    // Error handling methods
+    bool hasParseError() const { return hasError; }
+    const char* getErrorMessage() const { return errorMessage; }
+    void clearError() { hasError = false; errorMessage = nullptr; }
+    
+    // Buffer status methods
+    int getBufferPosition() const { return bufferPos; }
+    int getMaxBufferSize() const { return JSON_PARSER_BUFFER_MAX_LENGTH; }
+    int getStackDepth() const { return stackPos; }
+    int getCharacterCount() const { return characterCounter; }
 };
+
+#endif // JSON_STREAMING_PARSER2_H

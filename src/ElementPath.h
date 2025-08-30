@@ -1,3 +1,6 @@
+#ifndef ELEMENT_PATH_H
+#define ELEMENT_PATH_H
+
 /**The MIT License (MIT)
 
 Contributors:
@@ -22,6 +25,14 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 */
 
+#ifndef JSON_PARSER_PATH_MAX_DEPTH
+#define JSON_PARSER_PATH_MAX_DEPTH 20
+#endif
+
+#ifndef JSON_PARSER_KEY_MAX_LENGTH  
+#define JSON_PARSER_KEY_MAX_LENGTH 20
+#endif
+
 /*
   Unified element selector.
   Represents the handle associated to an element within either
@@ -33,7 +44,7 @@ class ElementSelector {
 
   private: 
     int index;
-    char key[20];
+    char key[JSON_PARSER_KEY_MAX_LENGTH];
 
   public:
     int getIndex();
@@ -72,7 +83,7 @@ class ElementPath {
   private:
     int count = 0;
     ElementSelector* current;
-    ElementSelector selectors[20];
+    ElementSelector selectors[JSON_PARSER_PATH_MAX_DEPTH];
 
   public:
     /*
@@ -132,3 +143,5 @@ class ElementPath {
     
     void push();
 };
+
+#endif // ELEMENT_PATH_H

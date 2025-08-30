@@ -1,3 +1,6 @@
+#ifndef JSON_HANDLER_H
+#define JSON_HANDLER_H
+
 /**The MIT License (MIT)
 
 Copyright (c) 2015 by Daniel Eichhorn
@@ -26,7 +29,8 @@ SOFTWARE.
 See more at http://blog.squix.ch and https://github.com/squix78/json-streaming-parser
 */
 
-#pragma once
+#ifndef JSON_HANDLER_H
+#define JSON_HANDLER_H
 
 #include <Arduino.h>
 #include "ElementPath.h"
@@ -53,3 +57,5 @@ class JsonHandler {
   
     virtual void whitespace(char c) = 0;
 };
+
+#endif // JSON_HANDLER_H

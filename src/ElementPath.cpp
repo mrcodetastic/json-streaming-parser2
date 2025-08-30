@@ -48,7 +48,13 @@ void ElementSelector::set(int index) {
 }
 
 void ElementSelector::set(char* key) {
-  strcpy(this->key, key);
+  if (key != nullptr && strlen(key) < JSON_PARSER_KEY_MAX_LENGTH) {
+    strcpy(this->key, key);
+  } else {
+    // Truncate if too long to prevent buffer overflow
+    strncpy(this->key, key, JSON_PARSER_KEY_MAX_LENGTH - 1);
+    this->key[JSON_PARSER_KEY_MAX_LENGTH - 1] = '\0';
+  }
   this->index = -1;
 }
 

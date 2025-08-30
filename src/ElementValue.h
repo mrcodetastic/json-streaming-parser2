@@ -1,3 +1,6 @@
+#ifndef ELEMENT_VALUE_H
+#define ELEMENT_VALUE_H
+
 #include <Arduino.h>
 
 union Variant {
@@ -83,20 +86,29 @@ struct ElementValue {
       return type == Type_Null;
     }
     
-    char* toString(char* buffer) {
+    char* toString(char* buffer, size_t bufferSize = 50) {
+      if (buffer == nullptr || bufferSize == 0) {
+        return buffer;
+      }
+      
       if(isInt()) {
-        sprintf(buffer, "%ld", getInt()); // long int
+        snprintf(buffer, bufferSize, "%ld", getInt()); // long int
       } else if(isFloat()) {
-        sprintf(buffer, "%f", getFloat());
+        snprintf(buffer, bufferSize, "%f", getFloat());
       } else if(isString()) {
-        sprintf(buffer, "\"%s\"", getString()); // Note: This adds "'s (quote symbols) either side of the actual string value.
+        snprintf(buffer, bufferSize, "\"%s\"", getString()); // Note: This adds "'s (quote symbols) either side of the actual string value.
       } else if(isBool()) {
-        strcpy(buffer, getBool() ? "true" : "false");
+        strncpy(buffer, getBool() ? "true" : "false", bufferSize - 1);
+        buffer[bufferSize - 1] = '\0';
       } else if(isNull()) {
-        strcpy(buffer, "null");
+        strncpy(buffer, "null", bufferSize - 1);
+        buffer[bufferSize - 1] = '\0';
       } else {
-        strcpy(buffer, "?");
+        strncpy(buffer, "?", bufferSize - 1);
+        buffer[bufferSize - 1] = '\0';
       }
       return buffer;
     }
 };
+
+#endif // ELEMENT_VALUE_H

@@ -1,5 +1,5 @@
-#ifndef http_json_stream_H
-#define http_json_stream_H
+#ifndef ARDUINO_STREAM_PARSER_H
+#define ARDUINO_STREAM_PARSER_H
 
 #include "Print.h"
 #include "Stream.h"
@@ -9,7 +9,7 @@
 // Can set this to 1
 #define CHARS_TO_PARSE_EACH_TIME 32
 
-class ArudinoStreamParser: public Stream, public JsonStreamingParser  {
+class ArduinoStreamParser: public Stream, public JsonStreamingParser  {
 public:
 
     /** Clear the buffer */
@@ -30,5 +30,4 @@ public:
 
 };
 
-
-#endif
+#endif // ARDUINO_STREAM_PARSER_H
